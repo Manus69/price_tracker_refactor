@@ -20,7 +20,7 @@ class Program
         if (!_log && !_target)
             _default = true;
 
-        if (_log && !_interval)
+        if (!_interval)
             _interval = INTERVAL_DEFAULT;
     }
 

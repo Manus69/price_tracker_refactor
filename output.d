@@ -48,6 +48,8 @@ void display_assets(const Asset[] assets)
     {
         display_asset(asset);
     }
+
+    // stdout.flush();
 }
 
 void play_sound()

@@ -11,8 +11,7 @@ import program;
 import constants;
 import output;
 import mode_default;
-
-const string _FILE = "price.txt";
+import mode_target;
 
 void main(string[] args)
 {
@@ -25,7 +24,6 @@ void main(string[] args)
 
     if (program.is_default)
         return default_mode(args[1]);
+    if (program.is_target)
+        return target_mode(args[1], program);
 }
-
-
-

@@ -11,7 +11,6 @@ import std.array;
 import asset;
 import constants;
 
-const string MSG = "Requesting data from " ~ URL_STRING;
 const string DEX_REQUEST = URL_STRING ~ "/latest/dex/pairs/%s/%s";
 const string PAIR = "pair";
 const string PRICE_USD = "priceUsd";

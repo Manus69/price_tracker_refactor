@@ -1,6 +1,7 @@
 module asset;
 
 import std.format;
+import std.conv;
 
 import asset_info;
 
@@ -15,6 +16,10 @@ class Asset
     this(AssetInfo info)
     {
         this._info = info;
+        if (info._extra)
+        {
+            this._target_price = to!double(info._extra);
+        }
     }
 
     void price_usd(double price) @property
@@ -60,6 +65,11 @@ class Asset
     string tag() const @property
     {
         return this._info._tag;
+    }
+
+    bool price_diff() const @property
+    {
+        return this._price_native > this._target_price;
     }
 
     int opCmp(const Asset asset) const
