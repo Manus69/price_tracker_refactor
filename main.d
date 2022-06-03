@@ -12,6 +12,7 @@ import constants;
 import output;
 import mode_default;
 import mode_target;
+import mode_log;
 
 void main(string[] args)
 {
@@ -20,10 +21,19 @@ void main(string[] args)
     if (args.length < 2)
         return error(USAGE_MSG);
 
-    program = new Program(args);
+    try
+    {
+        program = new Program(args);
 
-    if (program.is_default)
-        return default_mode(args[1]);
-    if (program.is_target)
-        return target_mode(args[1], program);
+        if (program.is_default)
+            return default_mode(args[1]);
+        if (program.is_target)
+            return target_mode(args[1], program);
+        if (program.is_log)
+            return log_mode(args, program);
+    }
+    catch (Exception e)
+    {
+        return error(e.msg);
+    }
 }
