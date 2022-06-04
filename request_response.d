@@ -7,6 +7,7 @@ import std.conv;
 import std.string;
 import std.algorithm;
 import std.array;
+import std.parallelism;
 
 import asset;
 import constants;
@@ -64,5 +65,12 @@ Asset evaluate_asset(Asset asset)
 
 Asset[] evaluate_assets(Asset[] assets)
 {
-    return map!(evaluate_asset)(assets).array;
+    // return map!(evaluate_asset)(assets).array;
+
+    foreach (asset; parallel(assets))
+    {
+        evaluate_asset(asset);
+    }
+
+    return assets;
 }
