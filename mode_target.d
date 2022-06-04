@@ -28,7 +28,7 @@ void target_mode(const string file_name, const Program program)
 
         if (assets.length)
         {
-            play_sound();
+            play_sound(program);
             display_assets(assets);
 
             return ;

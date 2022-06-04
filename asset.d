@@ -88,3 +88,22 @@ class Asset
                         _liquidity, _target_price, _info);
     }
 }
+
+double AssetPercentDiff(const Asset lhs, const Asset rhs)
+{
+    double max;
+    double min;
+
+    if (lhs > rhs)
+    {
+        max = lhs._price_usd;
+        min = rhs._price_usd;
+    }
+    else
+    {
+        max = rhs._price_usd;
+        min = lhs._price_usd;
+    }
+
+    return ((max - min) / min) * 100;
+}

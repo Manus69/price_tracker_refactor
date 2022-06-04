@@ -3,9 +3,11 @@ module output;
 import std.string;
 import std.stdio;
 import std.process;
+import std.file;
 
 import constants;
 import asset;
+import program;
 
 const string[]  HEADER_ARRAY = ["Price(USD) ", "Liquidity(USD)  ",
                                 "Blockchain  ", "Tag    "];
@@ -48,16 +50,20 @@ void display_assets(const Asset[] assets)
     {
         display_asset(asset);
     }
-
-    // stdout.flush();
 }
 
-void play_sound()
+void play_sound(const Program program)
 {
-    executeShell(SOUND_COMMAND);
+    if (program.sound)
+        executeShell(SOUND_COMMAND);
 }
 
 void error(const string message)
 {
     stderr.writeln(message);
+}
+
+void display_diff(File file, const Asset lhs, const Asset rhs, double diff)
+{
+    file.writefln("%.2f %s %s", diff, lhs.tag, rhs.tag);
 }

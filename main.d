@@ -1,8 +1,3 @@
-import std.stdio;
-import std.parallelism;
-import std.net.curl;
-
-//
 import input;
 import asset_info;
 import asset;
@@ -30,7 +25,7 @@ void main(string[] args)
         if (program.is_target)
             return target_mode(args[1], program);
         if (program.is_log)
-            return log_mode(args, program);
+            return log_mode(args[1], program);
     }
     catch (Exception e)
     {
