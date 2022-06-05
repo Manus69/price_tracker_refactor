@@ -3,12 +3,14 @@ module mode_target;
 import core.thread;
 import std.algorithm;
 import std.array;
+import std.stdio;
 
 import asset;
 import input;
 import request_response;
 import output;
 import program;
+import constants;
 
 private bool _diff(Asset asset)
 {
@@ -23,6 +25,7 @@ void target_mode(const string file_name, const Program program)
     
     while (true)
     {
+        writeln(REQUEST_MSG);
         evaluate_assets(assets);
         assets = filter!(_diff)(assets).array;
 

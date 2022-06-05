@@ -4,6 +4,7 @@ import std.stdio;
 import std.file;
 import std.algorithm;
 import core.thread;
+import std.stdio;
 
 import asset;
 import program;
@@ -25,6 +26,7 @@ void log_mode(const string file_name, const Program program)
 
     while (true)
     {
+        writeln(REQUEST_MSG);
         evaluate_assets(assets);
         sort(assets);
 

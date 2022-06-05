@@ -5,6 +5,22 @@ import std.conv;
 
 import asset_info;
 
+private double _get_target_price(Asset asset, const AssetInfo info)
+{
+    string str;
+
+    str = info._extra;
+    if (str[0] == '>')
+    {
+        asset._greater = true;
+        str = str[1 .. $];
+    }
+    else if (str[0] == '<')
+        str = str[1 .. $];
+    
+    return to!double(str);
+}
+
 class Asset
 {
     AssetInfo   _info;
@@ -12,13 +28,14 @@ class Asset
     double      _price_native;
     double      _liquidity;
     double      _target_price;
+    bool        _greater;
 
     this(AssetInfo info)
     {
         this._info = info;
         if (info._extra)
         {
-            this._target_price = to!double(info._extra);
+            this._target_price = _get_target_price(this, info);
         }
     }
 
@@ -67,9 +84,19 @@ class Asset
         return this._info._tag;
     }
 
-    bool price_diff() const @property
+    bool price_greater() const @property
     {
         return this._price_native > this._target_price;
+    }
+
+    bool price_less() const @property
+    {
+        return this._price_native < this._target_price;
+    }
+
+    bool price_diff() const @property
+    {
+        return this._greater ? this.price_greater : this.price_less;
     }
 
     int opCmp(const Asset asset) const
