@@ -1,12 +1,13 @@
-TARGET = tracker
+TARGET = tracker.exe
 SRC = $(wildcard *.d)
 SUFFIX = .obj
-NAME := $(shell uname -s)
+NAME = $(shell uname -s)
 CC = dmd
 FLAGS = -wi -O -c
 
 ifeq ($(NAME), Linux)
 	SUFFIX = .o
+	TARGET = tracker
 endif
 
 OBJ = $(SRC:.d=$(SUFFIX))
