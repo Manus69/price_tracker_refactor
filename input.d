@@ -56,7 +56,7 @@ private AssetInfo _line_to_result(const string line)
     code = tokens[index];
     extra = index + 1 == tokens.length ? null : tokens[index + 1];
 
-    return new AssetInfo(tokens[0], tag, code, extra);
+    return new AssetInfo(line, tokens[0], tag, code, extra);
 }
 
 private AssetInfo[] _parse_file(const string file_name)

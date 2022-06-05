@@ -52,6 +52,14 @@ void display_assets(const Asset[] assets)
     }
 }
 
+void display_assets_raw(const Asset[] assets)
+{
+    foreach (asset; assets)
+    {
+        writeln(asset.raw_string);
+    }
+}
+
 void play_sound(const Program program)
 {
     if (program.sound)

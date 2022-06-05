@@ -109,6 +109,11 @@ class Asset
         return 0;
     }
 
+    string raw_string() const @property
+    {
+        return this._info._raw_string;
+    }
+
     override string toString() const
     {
         return format("%s %s %s %s %s", _price_usd, _price_native,
