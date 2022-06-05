@@ -8,8 +8,10 @@ enum string LOG_MODE = "log";
 enum string TARGET_MODE = "target";
 enum string THRESHOLD = "threshold";
 enum string INTERVAL = "interval";
+enum string SOUND = "sound";
 enum string USAGE_MSG = "Usage: ./tracker [file_name] [optional args]"
                         ~ "\nOptions: " ~ "--" ~ LOG_MODE ~ " --" ~ TARGET_MODE
-                        ~ " --" ~ THRESHOLD;
+                        ~ " --" ~ THRESHOLD ~ " --" ~ SOUND ~ "=off";
+enum string COMMENT = "//";
 enum uint INTERVAL_DEFAULT = 1;
 enum uint THRESHOLD_DEFAULT = 5;

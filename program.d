@@ -16,8 +16,11 @@ class Program
 
     this(string[] args)
     {
+        string str;
+
         getopt(args, LOG_MODE, &_log, TARGET_MODE, &_target,
-                INTERVAL, &_interval, THRESHOLD, &_threshold);
+                INTERVAL, &_interval, THRESHOLD, &_threshold,
+                SOUND, &str);
         
         if (!_log && !_target)
             _default = true;
@@ -28,7 +31,7 @@ class Program
         if (!_threshold)
             _threshold = THRESHOLD_DEFAULT;
 
-        _sound = true;
+        _sound = str == "off" ? false : true;
     }
 
     bool is_default() const @property

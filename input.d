@@ -6,6 +6,8 @@ import std.file;
 
 import asset_info;
 import asset;
+import constants;
+
 
 const string    CODE_PREFIX = "0x";
 enum int        NOT_FOUND = -1;
@@ -69,6 +71,9 @@ private AssetInfo[] _parse_file(const string file_name)
 
     foreach (line; lines)
     {
+        if (startsWith(line, COMMENT))
+            continue ;
+
         result = _line_to_result(line);
 
         if (!result)
