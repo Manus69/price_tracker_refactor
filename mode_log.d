@@ -21,11 +21,11 @@ void log_mode(const string file_name, const Program program)
     File    log_file;
     double  diff;
 
-    assets = get_assets_from_file(file_name);
     log_file = File(LOG_FILE, "w");
 
     while (true)
     {
+        assets = get_assets_from_file(file_name);
         writeln(REQUEST_MSG);
         evaluate_assets(assets);
         sort(assets);

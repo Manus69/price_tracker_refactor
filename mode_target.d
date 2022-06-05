@@ -21,10 +21,9 @@ void target_mode(const string file_name, const Program program)
 {
     Asset[] assets;
 
-    assets = get_assets_from_file(file_name);
-    
     while (true)
     {
+        assets = get_assets_from_file(file_name);
         writeln(REQUEST_MSG);
         evaluate_assets(assets);
         assets = filter!(_diff)(assets).array;
@@ -33,8 +32,6 @@ void target_mode(const string file_name, const Program program)
         {
             play_sound(program);
             display_assets(assets);
-
-            return ;
         }
 
         Thread.sleep(program.interval.minutes);
