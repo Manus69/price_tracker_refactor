@@ -9,6 +9,18 @@ import mode_default;
 import mode_target;
 import mode_log;
 
+import std.net.curl;
+
+void run(const string[] args, const Program program)
+{
+    if (program.is_default)
+        return default_mode(args[1]);
+    if (program.is_target)
+        return target_mode(args[1], program);
+    if (program.is_log)
+        return log_mode(args[1], program);
+}
+
 void main(string[] args)
 {
     Program program;
@@ -19,13 +31,21 @@ void main(string[] args)
     try
     {
         program = new Program(args);
+    }
+    catch (Exception e)
+    {
+        return error(e.msg);
+    }
 
-        if (program.is_default)
-            return default_mode(args[1]);
-        if (program.is_target)
-            return target_mode(args[1], program);
-        if (program.is_log)
-            return log_mode(args[1], program);
+    try
+    {
+        return run(args, program);
+    }
+    catch (CurlException e)
+    {
+        error(CURL_ERROR);
+
+        return run(args, program);
     }
     catch (Exception e)
     {

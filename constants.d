@@ -12,6 +12,8 @@ enum string SOUND = "sound";
 enum string USAGE_MSG = "Usage: ./tracker [file_name] [optional args]"
                         ~ "\nOptions: " ~ "--" ~ LOG_MODE ~ " --" ~ TARGET_MODE
                         ~ " --" ~ THRESHOLD ~ " --" ~ SOUND ~ "=off";
+enum string CURL_ERROR = "Unexpected network error occured\n" ~
+                            "Resuming in a bit";
 enum string COMMENT = "//";
 enum uint INTERVAL_DEFAULT = 1;
 enum uint THRESHOLD_DEFAULT = 5;
