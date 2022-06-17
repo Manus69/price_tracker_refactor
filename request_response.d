@@ -8,6 +8,7 @@ import std.string;
 import std.algorithm;
 import std.array;
 import std.parallelism;
+import std.stdio;
 
 import asset;
 import constants;
@@ -56,9 +57,20 @@ Asset evaluate_asset(Asset asset)
     response = request_data(asset);
     j_value = parseJSON(response);
 
-    asset.price_usd = to!double(_get_price_usd(j_value));
-    asset.price_native = to!double(_get_price_native(j_value));
-    asset.liquidity = to!double(_get_liquidity(j_value));
+    try
+    {
+        asset.price_native = to!double(_get_price_native(j_value));
+        asset.liquidity = to!double(_get_liquidity(j_value));
+        asset.price_usd = to!double(_get_price_usd(j_value));
+    }
+    catch (Exception e)
+    {
+        stderr.writeln(JSON_ERROR);
+        stderr.writeln(asset._info);
+        stderr.writeln(e.msg, '\n');
+
+        return null;
+    }
 
     return asset;
 }
@@ -67,7 +79,7 @@ Asset[] evaluate_assets(Asset[] assets)
 {
     // return map!(evaluate_asset)(assets).array;
 
-    foreach (asset; parallel(assets))
+    foreach (ref asset; parallel(assets))
     {
         evaluate_asset(asset);
     }

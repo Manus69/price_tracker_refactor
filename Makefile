@@ -4,6 +4,7 @@ SUFFIX = .obj
 NAME = $(shell uname -s)
 CC = dmd
 FLAGS = -wi -O -c
+# FLAGS = -g -c
 
 ifeq ($(NAME), Linux)
 	SUFFIX = .o
@@ -16,7 +17,7 @@ OBJ = $(SRC:.d=$(SUFFIX))
 	$(CC) $(FLAGS) $^
 
 $(TARGET): $(OBJ)
-	$(CC) $(OBJ) -of=$(TARGET)
+	$(CC) $(OBJ) -O -of=$(TARGET)
 
 all: $(TARGET)
 
